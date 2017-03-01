@@ -74,3 +74,30 @@
           $ref: '#/responses/Unauthorized'
         '403':
           $ref: '#/responses/Forbidden'
+
+  /hooks/incoming/{hook_id}:
+    get:
+      tags:
+        - webhooks
+      summary: Get an incoming webhook
+      description: |
+        Get an incoming webhook given the hook id.
+        ##### Permissions
+        `manage_webhooks` for system or for the specific team or for the channel.
+      parameters:
+        - name: hook_id
+          in: path
+          description: Incoming Webhook GUID
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Incoming Webhook retrieval successful
+          schema:
+            $ref: '#/definitions/IncomingWebhook'
+        '400':
+          $ref: '#/responses/BadRequest'
+        '401':
+          $ref: '#/responses/Unauthorized'
+        '404':
+          $ref: '#/responses/NotFound'
